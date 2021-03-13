@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/flow_ruby/version"
+require_relative "lib/flow/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "flow_ruby"
-  spec.version       = FlowRuby::VERSION
+  spec.name          = "flow-ruby"
+  spec.version       = Flow::VERSION
   spec.authors       = ["david metta"]
   spec.email         = ["davideliemetta@gmail.com"]
 

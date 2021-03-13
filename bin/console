@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
-require "flow_ruby"
+require "flow"
 
 # require "pry"
 # Pry.start

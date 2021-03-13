@@ -2,8 +2,8 @@
 
 require "test_helper"
 
-class FlowRubyTest < Minitest::Test
+class FlowTest < Minitest::Test
   def test_that_it_has_a_version_number
-    refute_nil ::FlowRuby::VERSION
+    refute_nil ::Flow::VERSION
   end
 end

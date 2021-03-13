@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    flow_ruby (0.1.0)
+    flow-ruby (0.1.0)
       grpc
       json
 
@@ -43,7 +43,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
-  flow_ruby!
+  flow-ruby!
   grpc-tools
   minitest (~> 5.0)
   rake (~> 13.0)

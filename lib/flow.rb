@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative "flow_ruby/version"
+require_relative "flow/version"
 
-module FlowRuby
+module Flow
   class Error < StandardError; end
 end
