@@ -1,5 +1,9 @@
 AllCops:
   TargetRubyVersion: 2.4
+  Exclude:
+    - 'lib/flow/access/**'
+    - 'lib/flow/entities/**'
+    - 'lib/flow/execution/**'
 
 Style/StringLiterals:
   Enabled: true
@@ -8,6 +12,9 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Enabled: true
   EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Enabled: false
 
 Layout/LineLength:
   Max: 120
