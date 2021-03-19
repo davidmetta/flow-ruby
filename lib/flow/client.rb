@@ -21,7 +21,7 @@ module Flow
     #
     # Check if the Access API is ready and available
     #
-    # @return [Access::PingResponse]
+    # @return [Flow::Access::PingResponse]
     #
     def ping
       @stub.ping(Access::PingRequest.new)
@@ -163,26 +163,33 @@ module Flow
     #
     # Get a transaction by ID
     #
+    # @todo The ID should be +bytes+ or it should be formatted automatically
     #
+    # @param id [String]
     #
+    # @return [Flow::Entities::Transaction]
     #
-    # def get_transaction(id)
-    #   # to_bytes if its not bytes
-    #   req = Access::GetTransactionRequest.new(id: id)
-    #   @stub.get_transaction(req)
-    # end
+    def get_transaction(id)
+      req = Access::GetTransactionRequest.new(id: id)
+      res = @stub.get_transaction(req)
+      res.transaction
+    end
 
     #
     # Get the execution result of a transaction
     #
+    # @todo The ID should be +bytes+ or it should be formatted automatically
+    # @todo We might want to change the return value here, TransactionReturnResponse has
+    #   these available keys: status, status_code, error_message, events
     #
+    # @param id [String]
     #
+    # @return [Flow::Access::TransactionResultResponse]
     #
-    # def get_transaction_result(id)
-    #   # to_bytes if its not bytes
-    #   req = Access::GetTransactionRequest.new(id: id)
-    #   @stub.get_transaction_result(req)
-    # end
+    def get_transaction_result(id)
+      req = Access::GetTransactionRequest.new(id: id)
+      @stub.get_transaction_result(req)
+    end
 
     ####
     # Accounts
@@ -219,11 +226,23 @@ module Flow
     # Scripts
     ####
 
-    # def execute_script(script, args = [])
-    #   req = Access::ExecuteScriptAtLatestBlockRequest.new(script: script, arguments: args)
-    #   res = @stub.execute_script_at_latest_block(req)
-    #   parse_json(res.value)
-    # end
+    #
+    # Execute a read-only Cadence script against the latest sealed execution state
+    #
+    # @param script [String] cadence script
+    # @param args [Array] array of args
+    #
+    # @return [OpenStruct]
+    #
+    def execute_script(script, args = [])
+      req = Access::ExecuteScriptAtLatestBlockRequest.new(
+        script: script,
+        arguments: args
+      )
+
+      res = @stub.execute_script_at_latest_block(req)
+      parse_json(res.value)
+    end
 
     ####
     # Events
@@ -263,6 +282,25 @@ module Flow
       req = Access::GetNetworkParametersRequest.new
       res = @stub.get_network_parameters(req)
       res.to_h
+    end
+
+    ####
+    # Protocol state snapshot
+    #
+    # The following method can be used to query the latest protocol state snapshot
+    ####
+
+    #
+    # Retrieve the latest Protocol state snapshot serialized as a byte array.
+    #   It is used by Flow nodes joining the network to bootstrap a space-efficient local state
+    #
+    # @todo Fix. This currently fails with unimplemented_error
+    #
+    # @return
+    #
+    def get_latest_protocol_state_snapshot
+      req = Access::GetLatestProtocolStateSnapshotRequest.new
+      @stub.get_latest_protocol_state_snapshot(req)
     end
 
     private
