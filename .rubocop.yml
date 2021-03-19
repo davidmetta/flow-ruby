@@ -21,3 +21,6 @@ Layout/LineLength:
 
 Naming/AccessorMethodName:
   Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false

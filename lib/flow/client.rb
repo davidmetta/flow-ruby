@@ -155,7 +155,7 @@ module Flow
     #
     #
     # def send_transaction()
-    #   # TODO: build transaction here
+    #   # TODO: build and sign transaction here
     #   # req = Access::SendTransactionRequest.new()
     #   # @stub.send_transaction(req)
     # end
