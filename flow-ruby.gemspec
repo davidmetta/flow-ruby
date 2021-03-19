@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["davideliemetta@gmail.com"]
 
   spec.summary       = "Ruby client for the Flow API."
-  spec.description   = "Ruby client for the Flow API."
+  spec.description   = "This gem is Ruby client for the Flow API."
   spec.homepage      = "https://github.com/davidmetta/flow-ruby"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
@@ -28,9 +28,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Abin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "grpc"
-  spec.add_dependency "json"
-  spec.add_development_dependency "grpc-tools"
+  spec.add_dependency "grpc", "~> 1.36"
+  spec.add_dependency "json", "~> 2.5", ">= 2.5.1"
+  spec.add_development_dependency "grpc-tools", "~> 1.36"
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "pry", "~> 0.13.1"
   spec.add_development_dependency "rake", "~> 13.0"
