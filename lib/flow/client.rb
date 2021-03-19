@@ -217,7 +217,11 @@ module Flow
     # @return [Flow::Entities::Account]
     #
     def get_account_at_block_height(address, block_height)
-      req = Access::GetAccountAtBlockHeightRequest.new(address: to_bytes(address), block_height: block_height)
+      req = Access::GetAccountAtBlockHeightRequest.new(
+        address: to_bytes(address),
+        block_height: block_height
+      )
+
       res = @stub.get_account_at_latest_block(req)
       res.account
     end
@@ -253,17 +257,42 @@ module Flow
     #
     # Retrieve events emitted within the specified block range
     #
+    # @todo Scope the response further
+    #
     # @param type [String]
     # @param start_height [uint64]
     # @param end_height [uint64]
     #
-    # @return []
+    # @return [EventsResponse]
     #
-    # def get_events_for_height_range(type, start_height: 2, end_height: 3)
-    #   req = Access::GetEventsForHeightRangeRequest.new(type: type, start_height: start_height, end_height: end_height)
-    #   res = @stub.get_events_for_height_range(req)
-    #   res
-    # end
+    def get_events_for_height_range(type, start_height: 2, end_height: 3)
+      req = Access::GetEventsForHeightRangeRequest.new(
+        type: type,
+        start_height: start_height,
+        end_height: end_height
+      )
+
+      @stub.get_events_for_height_range(req)
+    end
+
+    #
+    # Retrieve events for the specified block IDs and event type
+    #
+    # @todo Scope the response further
+    #
+    # @param type [String]
+    # @param block_ids [Array]
+    #
+    # @return [EventsResponse]
+    #
+    def get_events_for_block_ids(type, block_ids = [])
+      req = Access::GetEventsForBlockIDsRequest.new(
+        type: type,
+        block_ids: block_ids
+      )
+
+      @stub.get_events_for_block_ids(req)
+    end
 
     ####
     # Network Parameters
